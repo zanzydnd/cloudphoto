@@ -12,7 +12,7 @@ class FileDownloader(S3StorageWorker):
             raise Exception("Путь не является директорией.")
 
         for key in self.client.list_objects(
-                Bucket=self.bucket_name, Prefix=self.album_name + "/", Delimiter="/"
+            Bucket=self.bucket_name, Prefix=self.album_name + "/", Delimiter="/"
         )["Contents"]:
             get_object_response = self.client.get_object(
                 Bucket=self.bucket_name, Key=key["Key"]

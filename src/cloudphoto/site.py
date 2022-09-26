@@ -35,7 +35,7 @@ class SiteMaker(S3StorageWorker):
                 album=album_name, images=albums.get(album_name), url=self.url
             )
             i += 1
-            with open(ROOT_DIR + "/tmp.html", 'w') as f:
+            with open(ROOT_DIR + "/tmp.html", "w") as f:
                 f.write(rendered_album)
             self.client.upload_file(
                 ROOT_DIR + "/tmp.html",
@@ -50,7 +50,7 @@ class SiteMaker(S3StorageWorker):
                 }
             )
         rendered_index = env.get_template("index.html").render(albums=albums_indexed)
-        with open(ROOT_DIR + "/tmp.html", 'w') as f:
+        with open(ROOT_DIR + "/tmp.html", "w") as f:
             f.write(rendered_index)
         self.client.upload_file(
             ROOT_DIR + "/tmp.html",

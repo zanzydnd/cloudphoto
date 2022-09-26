@@ -20,5 +20,5 @@ def is_configured():
     config = configparser.ConfigParser()
     config.read(str(config_path))
 
-    if not config['DEFAULT']:
+    if not config["DEFAULT"]:
         raise Exception("Запустите init")

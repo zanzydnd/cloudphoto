@@ -30,12 +30,12 @@ def init_cloudphoto():
     config_path /= "cloudphotorc"
 
     config = configparser.ConfigParser()
-    config['DEFAULT'] = {
+    config["DEFAULT"] = {
         "bucket": bucket,
         "aws_access_key_id": aws_access_key_id,
         "aws_secret_access_key": aws_secret_access_key,
         "region": "ru-central-1",
-        "endpoint_url": "https://storage.yandexcloud.net"
+        "endpoint_url": "https://storage.yandexcloud.net",
     }
     # with open(config_path, "w") as f:
     #     f.write(
