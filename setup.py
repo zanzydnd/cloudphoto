@@ -18,7 +18,7 @@ setuptools.setup(
     description="Cloudphoto - works with s3 (cloudlab itis assigment)",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    # url='https://github.com/linkedin/oncall',
+    url='https://github.com/zanzydnd/cloudphoto',
     classifiers=["Programming Language :: Python :: 3"],
     package_dir={"": "src"},
     packages=setuptools.find_packages("src"),
