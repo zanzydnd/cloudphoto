@@ -37,9 +37,6 @@ def init_cloudphoto():
         "region": "ru-central-1",
         "endpoint_url": "https://storage.yandexcloud.net",
     }
-    # with open(config_path, "w") as f:
-    #     f.write(
-    #         f"""[DEFAULT]\nbucket = {bucket}\naws_access_key_id = {aws_access_key_id}\naws_secret_access_key = {aws_secret_access_key}\nregion = ru-central1\nendpoint_url = https://storage.yandexcloud.net"""
-    #     )
+
     with open(config_path, "w") as configfile:
         config.write(configfile)
