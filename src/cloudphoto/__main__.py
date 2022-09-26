@@ -34,7 +34,7 @@ def upload(client, bucket_name):
     uploader = FileUploader(
         s3_client=client, album_name=params.get("album"), bucket_name=bucket_name
     )
-    uploader.upload(Path(params.get("path")))
+    uploader.upload(Path(params.get("path") if params.get("path") else "."))
 
 
 def download(client, bucket_name):
