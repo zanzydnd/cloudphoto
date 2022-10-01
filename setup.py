@@ -29,4 +29,5 @@ setuptools.setup(
             "cloudphoto=cloudphoto.bin.run:main",
         ]
     },
+    zip_safe=False,
 )

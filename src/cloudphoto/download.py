@@ -20,5 +20,5 @@ class FileDownloader(S3StorageWorker):
             filename = key["Key"].split("/")[1]
 
             filepath = path / filename
-            with filepath.open("w") as f:
+            with filepath.open("wb") as f:
                 f.write(get_object_response["Body"].read())

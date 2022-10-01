@@ -1,8 +1,9 @@
 import os
 
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, Template
 
 from cloudphoto.base import S3StorageWorker
+from cloudphoto.template import album_page, index, error
 from cloudphoto.utils import ROOT_DIR
 
 
@@ -12,8 +13,8 @@ class SiteMaker(S3StorageWorker):
         self.url = f"https://{bucket_name}.website.yandexcloud.net/"
 
     def make_site(self):
-        file_loader = FileSystemLoader(ROOT_DIR + "/templates")
-        env = Environment(loader=file_loader)
+        # file_loader = FileSystemLoader("templates")
+        # env = Environment(loader=file_loader)
 
         albums = {}
 
@@ -31,7 +32,7 @@ class SiteMaker(S3StorageWorker):
         albums_indexed = []
         i = 0
         for album_name in albums.keys():
-            rendered_album = env.get_template("album_page.html").render(
+            rendered_album = Template(album_page).render(
                 album=album_name, images=albums.get(album_name), url=self.url
             )
             i += 1
@@ -49,7 +50,7 @@ class SiteMaker(S3StorageWorker):
                     "album_name": album_name,
                 }
             )
-        rendered_index = env.get_template("index.html").render(albums=albums_indexed)
+        rendered_index = Template(index).render(albums=albums_indexed)
         with open(ROOT_DIR + "/tmp.html", "w") as f:
             f.write(rendered_index)
         self.client.upload_file(
@@ -57,8 +58,10 @@ class SiteMaker(S3StorageWorker):
             self.bucket_name,
             f"index.html",
         )
+        with open(ROOT_DIR + "/tmp.html", "w") as f:
+            f.write(error)
         self.client.upload_file(
-            ROOT_DIR + "/templates/error.html",
+            ROOT_DIR + "/tmp.html",
             self.bucket_name,
             f"error.html",
         )

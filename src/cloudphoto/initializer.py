@@ -18,7 +18,7 @@ def init_cloudphoto():
             aws_secret_access_key=aws_secret_access_key,
         )
 
-        s3.create_bucket(Bucket=bucket)
+        s3.create_bucket(Bucket=bucket,ACL='public-read-write')
     except ClientError as e:
         if e.response["Error"]["Code"] == "BucketAlreadyOwnedByYou":
             pass

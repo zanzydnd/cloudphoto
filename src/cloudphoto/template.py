@@ -1,3 +1,5 @@
+album_page = """
+
 <!doctype html>
 <html>
 <head>
@@ -28,3 +30,34 @@
 </script>
 </body>
 </html>
+
+"""
+
+index = """
+<!doctype html>
+<html>
+<head>
+    <title>Фотоархив</title>
+</head>
+<body>
+<h1>Фотоархив</h1>
+<ul>
+    {% for album in albums%}
+    <li><a href="{{album.album_numbered_name}}.html">{{album.album_name}}</a></li>
+    {% endfor %}
+</ul>
+</body
+"""
+
+error = """
+<!doctype html>
+<html>
+    <head>
+        <title>Фотоархив</title>
+    </head>
+<body>
+    <h1>Ошибка</h1>
+    <p>Ошибка при доступе к фотоархиву. Вернитесь на <a href="index.html">главную страницу</a> фотоархива.</p>
+</body>
+</html>
+"""
